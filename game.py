@@ -1,5 +1,6 @@
 import pygame
 import os
+from players.hero_tank import HeroTank
 
 game_world_x = 800
 game_world_y = 400
@@ -20,7 +21,14 @@ class NESTank:
 	
 	def game_main_loop(self):
 		while True:
+			hero_tank = HeroTank()
+			hero_tank.rect.x = 0
+			hero_tank.rect.y = 0
+			players_list = pygame.sprite.Group()
+			players_list.add(hero_tank)
+
 			self.game_world.blit(self.game_background, self.game_background_size)
+			players_list.draw(self.game_world)
 			pygame.display.flip()
 			self.clock.tick(frames_per_second)
 
